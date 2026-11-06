@@ -377,6 +377,43 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
 .me img{box-shadow:0 0 0 6px var(--card),0 20px 40px -16px rgba(14,27,46,.4)}
 @media (prefers-reduced-motion: reduce){.hstage .phone{transform:rotate(-3deg)}}
 
+/* ================= VIBRANT LIGHT ================= */
+:root{--glow-y:rgba(255,184,0,.55);--glow-b:rgba(36,83,214,.42);--glow-g:rgba(31,157,107,.40)}
+/* hero phone: lit by the yellow sun behind it, blue bounce light on the other side */
+.hstage{perspective:1400px}
+.hstage .phone{transition:transform .25s ease-out;transform-style:preserve-3d;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),inset 0 0 0 2.5px #06080D,inset 0 2px 1px rgba(255,255,255,.14),
+  0 2px 3px rgba(14,27,46,.14),0 14px 28px -8px rgba(14,27,46,.30),
+  34px 46px 90px -24px var(--glow-y),-40px 60px 110px -40px var(--glow-b),0 90px 120px -50px rgba(14,27,46,.55)}
+.hstage::before{background:radial-gradient(circle at 38% 32%,#FFE08A 0%,#FFC933 45%,#F2A900 100%);box-shadow:0 0 0 18px rgba(255,201,51,.18),0 0 0 44px rgba(255,201,51,.08),0 40px 90px -20px rgba(242,169,0,.55)}
+.scr::after{background:linear-gradient(var(--ga,118deg),rgba(255,255,255,.26) 0%,rgba(255,255,255,.08) 22%,rgba(255,255,255,0) 40%),linear-gradient(0deg,rgba(0,0,0,.035),rgba(0,0,0,0) 30%)}
+.notif{box-shadow:0 1px 2px rgba(14,27,46,.08),0 10px 20px -6px rgba(14,27,46,.16),0 30px 60px -18px var(--glow-g)}
+/* how-it-works cards, each with its own colored glow */
+.three li:nth-child(1) .mini{box-shadow:0 2px 4px rgba(14,27,46,.05),0 24px 50px -22px var(--glow-y)}
+.three li:nth-child(2) .mini{box-shadow:0 2px 4px rgba(14,27,46,.05),0 24px 50px -22px var(--glow-b)}
+.three li:nth-child(3) .mini{box-shadow:0 2px 4px rgba(14,27,46,.05),0 24px 50px -22px var(--glow-g)}
+.mini{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.three li:hover .mini{transform:translateY(-6px)}
+/* showcase: each phone glows in its own brand color, light spills onto the dark band */
+.t-tree{--glow:rgba(245,183,15,.55)}.t-glow{--glow:rgba(176,92,255,.6)}.t-door{--glow:rgba(47,110,255,.6)}.t-gut{--glow:rgba(20,200,160,.5)}
+.ph{box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),inset 0 0 0 2.5px #05070C,0 2px 4px rgba(0,0,0,.35),0 20px 34px -12px rgba(0,0,0,.6),0 46px 90px -26px var(--glow),0 0 60px -20px var(--glow)}
+.ph:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,.25),inset 0 0 0 2.5px #05070C,0 2px 4px rgba(0,0,0,.35),0 30px 50px -14px rgba(0,0,0,.6),0 60px 120px -20px var(--glow),0 0 90px -10px var(--glow)}
+#websites{position:relative;overflow:hidden}
+#websites::before{content:"";position:absolute;left:50%;top:58%;width:1100px;height:520px;margin-left:-550px;pointer-events:none;
+  background:radial-gradient(closest-side at 22% 50%,rgba(245,183,15,.16),transparent),radial-gradient(closest-side at 42% 50%,rgba(176,92,255,.20),transparent),radial-gradient(closest-side at 60% 50%,rgba(47,110,255,.20),transparent),radial-gradient(closest-side at 80% 50%,rgba(20,200,160,.16),transparent);filter:blur(10px)}
+#websites .wrap{position:relative}
+/* owner phone + pricing + form */
+.ostage .phone{box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),inset 0 0 0 2.5px #06080D,0 2px 3px rgba(14,27,46,.14),0 14px 28px -8px rgba(14,27,46,.28),-30px 50px 100px -30px var(--glow-b),30px 60px 100px -40px var(--glow-y)}
+.pcard{box-shadow:0 1px 2px rgba(14,27,46,.05),0 10px 20px -8px rgba(14,27,46,.12),0 40px 80px -30px var(--glow-y),0 70px 110px -50px rgba(14,27,46,.35)}
+.dark .dform{box-shadow:0 2px 4px rgba(0,0,0,.25),0 30px 70px -20px rgba(0,0,0,.6),0 0 90px -30px rgba(255,201,51,.45)}
+.btn{box-shadow:0 1px 1px rgba(14,27,46,.1),0 10px 22px -8px var(--glow-b)}
+.btn:hover{box-shadow:0 1px 1px rgba(14,27,46,.1),0 16px 30px -10px var(--glow-b)}
+.btn.ghost{box-shadow:none}
+.btn.yel{box-shadow:inset 0 -2px 0 rgba(0,0,0,.08),0 1px 1px rgba(120,80,0,.15),0 14px 30px -8px var(--glow-y)}
+.btn.yel:hover{box-shadow:inset 0 -2px 0 rgba(0,0,0,.08),0 20px 40px -10px rgba(255,170,0,.75)}
+.deal .big{box-shadow:0 12px 26px -10px var(--glow-y)}
+.me img{box-shadow:0 0 0 6px var(--card),0 24px 50px -16px var(--glow-b),0 10px 30px -10px rgba(14,27,46,.3)}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -718,6 +755,15 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
   show('svc');
   // tease the owner notification once so visitors see both sides
   if(!RM) setTimeout(()=>{ if(cur==='svc'){ const n=$('#notif'); n.classList.add('on'); n._t=setTimeout(()=>n.classList.remove('on'),3800);} },2200);
+
+
+  // 3D tilt + moving glass glare on the hero phone (mouse/trackpad only)
+  const stage=$('.hstage'), hp=stage&&stage.querySelector('.phone'), hs=hp&&hp.querySelector('.scr');
+  if(hp && !RM && matchMedia('(hover:hover) and (pointer:fine)').matches){
+    stage.addEventListener('pointermove',e=>{ const r=stage.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      hp.style.transform='rotate(-3deg) translateY(-6px) rotateY('+(x*14)+'deg) rotateX('+(-y*10)+'deg)'; hs.style.setProperty('--ga',(118+x*40)+'deg'); });
+    stage.addEventListener('pointerleave',()=>{ hp.style.transform=''; hs.style.removeProperty('--ga'); });
+  }
 
   // ---------- demo request form -> Netlify Forms ----------
   const dform=$('#demo-form');
