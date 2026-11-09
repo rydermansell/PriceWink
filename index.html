@@ -24,6 +24,7 @@
   --r:22px;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 html,body{overflow-x:hidden}@supports(overflow:clip){html,body{overflow-x:clip}}
 body{margin:0;background:var(--paper);color:var(--body);font-family:var(--f);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -327,6 +328,9 @@ details p{margin-top:10px;font-size:1rem}
 .terms ul{padding-left:20px;margin:8px 0 0;display:flex;flex-direction:column;gap:6px}
 .terms li,.terms p{font-size:.96rem}
 .upd{color:var(--muted);font-size:.88rem;margin-top:6px}
+.terms > p{font-size:.96rem;margin:10px 0 0}
+.dconsent{margin:0;font-size:.8rem;line-height:1.45;color:var(--muted)}
+.dconsent a{color:var(--ink);font-weight:600}
 footer{border-top:1px solid var(--line);padding:36px 0 calc(44px + env(safe-area-inset-bottom,0px))}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:.92rem;color:var(--muted)}
 .fl{display:flex;flex-wrap:wrap;gap:8px 20px}
@@ -664,6 +668,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
       <input type="text" name="website_url" id="d-hp" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
       <p class="derr" id="d-err" hidden></p>
       <button class="btn yel" type="submit" id="d-submit">Request my demo</button>
+      <p class="dconsent">By sending this, you agree we can contact you by email, phone or text about PriceWink. See our <a href="#privacy">privacy policy</a>.</p>
       <div class="dsent" id="d-sent" hidden>
         <svg width="26" height="26" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#1F9D6B"/><path d="M5.5 10.5l3 3 6-6.5" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div><b>Request received.</b><br>We’ll email you within 24 hours to set up your free demo.</div>
@@ -672,37 +677,75 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
   </div>
 </section>
 
-<!-- ================= TERMS ================= -->
+<!-- ================= TERMS & PRIVACY ================= -->
 <section id="terms">
   <div class="wrap terms">
     <span class="eyebrow">The fine print</span>
-    <h2 style="margin-top:14px">Terms &amp; privacy</h2>
-    <p class="upd">Last updated November 6, 2026</p>
+    <h2 style="margin-top:14px">Terms of service</h2>
+    <p class="upd">Last updated November 9, 2026</p>
+    <p>PriceWink is run by Ryder Mansell in Knoxville, Tennessee. By signing up or paying for PriceWink, you agree to these terms.</p>
     <h3>Payments</h3>
     <ul>
       <li>The setup fee is a one-time charge for building your quote tool and, if included, your website. It is non-refundable.</li>
       <li>The monthly plan is billed automatically through Stripe on the same day each month. There’s no contract.</li>
-      <li>You can cancel anytime by calling, texting or emailing us. You won’t be charged again after you cancel. Payments already made aren’t refunded.</li>
+      <li>If a monthly payment fails and isn’t fixed within 14 days, we may pause your quote tool and website until it’s paid.</li>
+      <li>We’ll give you at least 30 days’ notice before changing your monthly price.</li>
+    </ul>
+    <h3>Cancellation &amp; refunds</h3>
+    <ul>
+      <li>You can cancel anytime by calling, texting or emailing us. You won’t be charged again after you cancel.</li>
+      <li>Payments already made, including the setup fee and the current month, aren’t refunded.</li>
+      <li>Your tool and website stay live until the end of the month you’ve paid for.</li>
     </ul>
     <h3>What we do</h3>
     <ul>
       <li>We build, host and maintain your quote tool and website, and make price, service and content updates when you ask.</li>
       <li>If we register a domain for you, it belongs to you. If you cancel, we’ll transfer it to you.</li>
       <li>We work to keep your tool running at all times, but we can’t promise it will never be down. If something breaks, we fix it as fast as we can.</li>
+    </ul>
+    <h3>What you’re responsible for</h3>
+    <ul>
       <li>Prices on your quote page are set by you. You’re responsible for the prices and the work you offer your customers.</li>
+      <li>Photos, logos, reviews and other content you give us must be yours or something you have permission to use. Reviews must come from real customers.</li>
+      <li>You agree not to use PriceWink for anything illegal or misleading. We can end service if you do.</li>
     </ul>
-    <h3>Your data</h3>
+    <h3>Limits</h3>
     <ul>
-      <li>Your prices and your customers’ booking info belong to you. We only use them to run your tool.</li>
-      <li>We never sell or share your information or your customers’ information.</li>
+      <li>We aren’t responsible for lost jobs, lost profits or other indirect losses caused by downtime or errors.</li>
+      <li>If we are ever responsible for a loss, the most we’ll owe is what you paid us in the 3 months before it happened.</li>
+      <li>These terms are governed by Tennessee law. If we change them, we’ll update the date above and let current clients know.</li>
+    </ul>
+
+    <h2 id="privacy" style="margin-top:48px">Privacy policy</h2>
+    <p class="upd">Last updated November 9, 2026</p>
+    <h3>What we collect</h3>
+    <ul>
+      <li><b>Demo requests:</b> your name, business name, email, phone (if you give it), type of business and best time to reach you.</li>
+      <li><b>Clients:</b> your contact and billing details, plus the prices, services, photos and content for your tool and website.</li>
+      <li><b>Your customers’ bookings:</b> when someone books through your quote tool, we receive the details they enter, such as name, phone, address and the job they need.</li>
+    </ul>
+    <h3>How we use it</h3>
+    <ul>
+      <li>To contact you about PriceWink by email, phone or text. Reply STOP to any text and we’ll stop texting you.</li>
+      <li>To build and run your tool, send you booking alerts and bill you.</li>
+      <li>Your customers’ booking info is yours. We only use it to deliver bookings to you, never to contact your customers ourselves.</li>
+      <li>We never sell or share anyone’s information for marketing.</li>
+    </ul>
+    <h3>Services we use</h3>
+    <ul>
+      <li><b>Netlify</b> hosts this website and receives demo request forms.</li>
+      <li><b>Stripe</b> handles card payments. We never see or store your full card number.</li>
+      <li><b>Google</b> stores bookings in a spreadsheet shared with you, handles our email, and serves this site’s fonts.</li>
+      <li>This website doesn’t use advertising or analytics cookies or tracking pixels.</li>
+    </ul>
+    <h3>Keeping and deleting it</h3>
+    <ul>
+      <li>We keep information only as long as we need it to work with you or as required for taxes and records.</li>
       <li>If you cancel, we’ll send you a copy of your bookings.</li>
+      <li>You can ask us to see, correct or delete your information anytime by emailing <a href="mailto:rj@getpricewink.com">rj@getpricewink.com</a>.</li>
+      <li>PriceWink is for businesses and isn’t meant for children under 13.</li>
     </ul>
-    <h3>This website</h3>
-    <ul>
-      <li>When you request a demo, we use your name, email, phone and business details only to contact you about PriceWink.</li>
-      <li>Card payments are handled by Stripe. We never see or store your full card number.</li>
-    </ul>
-    <p style="margin-top:16px">Questions? Call or text <a href="tel:+18653210398">(865) 321-0398</a> or email rj@getpricewink.com.</p>
+    <p style="margin-top:16px">Questions? Call or text <a href="tel:+18653210398">(865) 321-0398</a> or email <a href="mailto:rj@getpricewink.com">rj@getpricewink.com</a>.</p>
   </div>
 </section>
 </main>
@@ -710,7 +753,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
 <footer>
   <div class="wrap">
     <a class="logo" href="#top" style="font-size:1.1rem"><svg width="26" height="26" aria-hidden="true"><use href="#mark"/></svg><span><b>Price</b><span>Wink</span></span></a>
-    <span class="fl"><a href="https://billing.stripe.com/p/login/8x29AU6JcdlPa3o8wSd3i00" target="_blank" rel="noopener">Pay an invoice</a><a href="tel:+18653210398">(865) 321-0398</a><a href="mailto:rj@getpricewink.com">rj@getpricewink.com</a><a href="#terms">Terms &amp; privacy</a><span>© 2026 PriceWink</span></span>
+    <span class="fl"><a href="https://billing.stripe.com/p/login/8x29AU6JcdlPa3o8wSd3i00" target="_blank" rel="noopener">Pay an invoice</a><a href="tel:+18653210398">(865) 321-0398</a><a href="mailto:rj@getpricewink.com">rj@getpricewink.com</a><a href="#terms">Terms</a><a href="#privacy">Privacy</a><span>© 2026 PriceWink</span></span>
   </div>
 </footer>
 
@@ -780,7 +823,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
     try{
       const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(dform)).toString()});
       if(!r.ok) throw new Error('send failed');
-      [...dform.querySelectorAll('.dgrid, label, .btn')].forEach(x=>x.hidden=true);
+      [...dform.querySelectorAll('.dgrid, label, .btn, .dconsent')].forEach(x=>x.hidden=true);
       $('#d-sent').hidden=false;
     }catch(_){ btn.disabled=false; btn.textContent='Request my demo'; fail('Your request couldn’t be sent. Please email rj@getpricewink.com instead.'); }
   });
