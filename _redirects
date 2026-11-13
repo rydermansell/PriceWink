@@ -1,0 +1,2 @@
+# Serve prospect demos under the PriceWink domain (files live in the rydermansell/demos repo on GitHub Pages)
+/demos/*  https://rydermansell.github.io/demos/:splat  200
