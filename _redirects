@@ -1,2 +1,6 @@
 # Serve prospect demos under the PriceWink domain (files live in the rydermansell/demos repo on GitHub Pages)
 /demos/*  https://rydermansell.github.io/demos/:splat  200
+
+# Owner inboxes at getpricewink.com/inbox (same page as /demos/inbox, without "demos" in the address)
+/inbox    https://rydermansell.github.io/demos/inbox/  200
+/inbox/*  https://rydermansell.github.io/demos/inbox/:splat  200
