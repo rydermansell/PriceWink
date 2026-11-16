@@ -1,6 +1,7 @@
-# Serve prospect demos under the PriceWink domain (files live in the rydermansell/demos repo on GitHub Pages)
-/demos/*  https://rydermansell.github.io/demos/:splat  200
-
-# Owner inboxes at getpricewink.com/inbox (same page as /demos/inbox, without "demos" in the address)
-/inbox    https://rydermansell.github.io/demos/inbox/  200
-/inbox/*  https://rydermansell.github.io/demos/inbox/:splat  200
+# Cloudflare Pages redirects (getpricewink.com).
+# Prospect demos and owner inboxes live on app.getpricewink.com (Cloudflare Pages project "pricewink-app", repo rydermansell/demos).
+# Old getpricewink.com/demos/... and /inbox links keep working by sending people there.
+/demos      https://app.getpricewink.com/        301
+/demos/*    https://app.getpricewink.com/:splat  301
+/inbox      https://app.getpricewink.com/inbox/  301
+/inbox/*    https://app.getpricewink.com/inbox/:splat  301

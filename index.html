@@ -11,6 +11,17 @@
 <meta property="og:description" content="Customers see your price and book from their phone. You get the job.">
 <meta property="og:url" content="https://getpricewink.com/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="PriceWink">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://getpricewink.com/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"PriceWink","url":"https://getpricewink.com/",
+ "description":"Custom websites, instant quote tools and online booking for local service businesses, built and managed from Knoxville, TN.",
+ "telephone":"+1-865-321-0398","email":"rj@getpricewink.com","founder":{"@type":"Person","name":"Ryder Mansell"},
+ "address":{"@type":"PostalAddress","addressLocality":"Knoxville","addressRegion":"TN","addressCountry":"US"},
+ "areaServed":[{"@type":"City","name":"Knoxville"},{"@type":"State","name":"Tennessee"}],
+ "priceRange":"$$","knowsAbout":["Website design","Instant quote tools","Online booking","Local SEO"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -650,8 +661,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
       <p class="lead" style="margin-top:18px">Tell us about your business. We’ll reply <b style="color:#fff">within 24 hours</b> with a free preview built for you.</p>
       <p class="alt">Rather talk? Call or text <a href="tel:+18653210398">(865) 321-0398</a><br>or email <a href="mailto:rj@getpricewink.com">rj@getpricewink.com</a></p>
     </div>
-    <form class="dform rv" id="demo-form" name="demo" method="POST" data-netlify="true" netlify-honeypot="website_url" novalidate>
-      <input type="hidden" name="form-name" value="demo">
+    <form class="dform rv" id="demo-form" name="demo" novalidate>
       <div class="dgrid">
         <label for="d-name">Your name<input id="d-name" name="name" autocomplete="name" required></label>
         <label for="d-biz">Business name<input id="d-biz" name="business" autocomplete="organization" required></label>
@@ -733,9 +743,9 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
     </ul>
     <h3>Services we use</h3>
     <ul>
-      <li><b>Netlify</b> hosts this website and receives demo request forms.</li>
+      <li><b>Cloudflare</b> hosts this website.</li>
       <li><b>Stripe</b> handles card payments. We never see or store your full card number.</li>
-      <li><b>Google</b> stores bookings in a spreadsheet shared with you, handles our email, and serves this site’s fonts.</li>
+      <li><b>Google</b> stores bookings and demo requests in a spreadsheet, handles our email, and serves this site’s fonts.</li>
       <li>This website doesn’t use advertising or analytics cookies or tracking pixels.</li>
     </ul>
     <h3>Keeping and deleting it</h3>
@@ -808,7 +818,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
     stage.addEventListener('pointerleave',()=>{ hp.style.transform=''; hs.style.removeProperty('--ga'); });
   }
 
-  // ---------- demo request form -> Netlify Forms ----------
+  // ---------- demo request form -> PriceWink backend (Google Apps Script): saved to a sheet + emailed to rj@getpricewink.com ----------
+  const DEMO_API='https://script.google.com/macros/s/AKfycbww8DaHkg0HBFO2qj8nyTtBNJ5dvN88JHFE4XZw2IWC4CAggCfk7-50oCYd2MLJjKm1rA/exec';
   const dform=$('#demo-form');
   dform.addEventListener('submit',async e=>{
     e.preventDefault();
@@ -821,8 +832,9 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
     if(v('#d-hp')) return;
     btn.disabled=true; btn.textContent='Sending…';
     try{
-      const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(dform)).toString()});
-      if(!r.ok) throw new Error('send failed');
+      const body=Object.assign({action:'demo_request',page:location.href},Object.fromEntries(new FormData(dform)));
+      const r=await fetch(DEMO_API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
+      const j=await r.json(); if(!j.ok) throw new Error(j.error||'send failed');
       [...dform.querySelectorAll('.dgrid, label, .btn, .dconsent')].forEach(x=>x.hidden=true);
       $('#d-sent').hidden=false;
     }catch(_){ btn.disabled=false; btn.textContent='Request my demo'; fail('Your request couldn’t be sent. Please email rj@getpricewink.com instead.'); }
