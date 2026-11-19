@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>try{var q=/[?&]intro\b/.test(location.search),k=sessionStorage;if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!location.hash&&!document.hidden&&(q||!k.getItem('pw_intro'))){document.documentElement.classList.add('intro');k.setItem('pw_intro','1')}}catch(e){}</script>
 <title>Knoxville Websites With Instant Quotes That Win Jobs | PriceWink</title>
 <meta name="description" content="Win the job before they call anyone else. PriceWink builds Knoxville-area service businesses websites with local SEO and instant quotes. See a free preview first. $249 setup, $99/month.">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -441,6 +442,17 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
   .rv,.row{opacity:1;transform:none}
   .ph{transform:none!important}
 }
+/* Opening animation: the whole screen is the logo tile, then it shrinks into the nav logo */
+.pi{display:none;position:fixed;inset:0;z-index:100;background:var(--ink);cursor:pointer}
+html.intro .pi{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;animation:piSafe .2s linear 4s forwards}
+@keyframes piSafe{to{opacity:0;visibility:hidden}}
+.pi-mark{display:block;width:min(46vw,210px);height:min(46vw,210px);overflow:visible}
+.pi-tag,.pi-spark,.pi-word{opacity:0}
+.pi-tag{transform-box:view-box;transform-origin:12.93px 22.85px}
+.pi-shine{transform-box:view-box}
+.pi-hole,.pi-spark{transform-box:fill-box;transform-origin:center}
+.pi-word{font-family:var(--disp);font-size:clamp(1.9rem,7vw,2.6rem);letter-spacing:-.03em;color:#fff;line-height:1}
+.pi-word b{font-weight:800}.pi-word span{font-weight:500;color:var(--tag)}
 /* Get seen section */
 .hero h1{font-size:clamp(2.9rem,8.4vw,5rem)}
 .hero h1 em.s,#grow h2 em.s{display:block}
@@ -461,6 +473,18 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
 </style>
 </head>
 <body>
+<div class="pi" id="pi" aria-hidden="true">
+  <svg class="pi-mark" viewBox="0 0 40 40">
+    <defs><clipPath id="piClip"><path d="M12 13h14.5a2.5 2.5 0 0 1 2.5 2.5v11a2.5 2.5 0 0 1-2.5 2.5H12l-6-8z"/></clipPath></defs>
+    <g class="pi-tag"><g transform="rotate(-20 18 21)">
+      <path d="M12 13h14.5a2.5 2.5 0 0 1 2.5 2.5v11a2.5 2.5 0 0 1-2.5 2.5H12l-6-8z" fill="#FFC933"/>
+      <g clip-path="url(#piClip)"><rect class="pi-shine" x="-4" y="6" width="5" height="30" fill="#fff" opacity="0"/></g>
+      <circle class="pi-hole" cx="12.6" cy="21" r="2.2" fill="#0E1B2E"/>
+    </g></g>
+    <path class="pi-spark" d="M32.5 5q.7 2.8 3.5 3.5q-2.8.7-3.5 3.5q-.7-2.8-3.5-3.5q2.8-.7 3.5-3.5z" fill="#FFC933"/>
+  </svg>
+  <div class="pi-word"><b>Price</b><span>Wink</span></div>
+</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="mark" viewBox="0 0 40 40"><rect width="40" height="40" rx="11" fill="#0E1B2E"/><g transform="rotate(-20 18 21)"><path d="M12 13h14.5a2.5 2.5 0 0 1 2.5 2.5v11a2.5 2.5 0 0 1-2.5 2.5H12l-6-8z" fill="#FFC933"/><circle cx="12.6" cy="21" r="2.2" fill="#0E1B2E"/></g><path d="M32.5 5q.7 2.8 3.5 3.5q-2.8.7-3.5 3.5q-.7-2.8-3.5-3.5q2.8-.7 3.5-3.5z" fill="#FFC933"/></symbol>
@@ -532,6 +556,46 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  var h=document.documentElement,o=document.getElementById('pi');
+  if(!o) return;
+  if(!h.classList.contains('intro')){o.remove();return}
+  var $=function(c){return o.querySelector(c)},mark=$('.pi-mark'),logo=document.querySelector('.nav .logo svg'),ended=false,all=[],page=[];
+  var OUT='cubic-bezier(.23,1,.32,1)',MOVE='cubic-bezier(.77,0,.175,1)',SINE='cubic-bezier(.37,0,.63,1)',T=1180;
+  function A(el,kf,t,list){if(!el)return null;var a=el.animate(kf,Object.assign({fill:'both'},t));(list||all).push(a);return a}
+  function off(){['pointerdown','keydown','wheel','touchmove'].forEach(function(e){removeEventListener(e,skip)})}
+  function end(){if(ended)return;ended=true;off();o.remove();h.classList.remove('intro')}
+  function skip(){
+    if(ended)return;ended=true;off();
+    all.forEach(function(a){a.cancel()});page.forEach(function(a){a.finish()});
+    o.style.animation='none';
+    var f=o.animate([{opacity:1},{opacity:0}],{duration:170,easing:'ease-out',fill:'forwards'});
+    f.onfinish=function(){o.remove();h.classList.remove('intro')};
+  }
+  if(scrollY>0||!o.animate||!logo){end();return}
+  ['pointerdown','keydown','wheel','touchmove'].forEach(function(e){addEventListener(e,skip,{passive:true})});
+  /* tag swings in from its hole, shine, wink, sparkle */
+  A($('.pi-tag'),[{opacity:0,transform:'rotate(46deg) translateY(-10px)',easing:SINE},{opacity:1,offset:.16},{transform:'rotate(-13deg) translateY(0)',offset:.5,easing:SINE},{transform:'rotate(6deg) translateY(0)',offset:.72,easing:SINE},{transform:'rotate(-2deg) translateY(0)',offset:.88,easing:SINE},{opacity:1,transform:'rotate(0) translateY(0)'}],{duration:760,delay:60});
+  A($('.pi-shine'),[{opacity:.6,transform:'translateX(0) skewX(-18deg)'},{opacity:.6,transform:'translateX(40px) skewX(-18deg)'}],{duration:380,delay:520,easing:'ease-in-out',fill:'none'});
+  A($('.pi-hole'),[{transform:'scaleY(1)',easing:'ease-in'},{transform:'scaleY(.09)',offset:.42,easing:'linear'},{transform:'scaleY(.09)',offset:.56,easing:OUT},{transform:'scaleY(1)'}],{duration:260,delay:760});
+  A($('.pi-spark'),[{opacity:0,transform:'scale(.5) rotate(-50deg)',easing:OUT},{opacity:1,transform:'scale(1.28) rotate(8deg)',offset:.55,easing:'ease-in-out'},{opacity:1,transform:'scale(1) rotate(0)'}],{duration:400,delay:800});
+  A($('.pi-word'),[{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:520,delay:400,easing:OUT});
+  /* the screen collapses into the real logo in the menu */
+  var m=mark.getBoundingClientRect(),l=logo.getBoundingClientRect(),W=o.clientWidth,H=o.clientHeight,r=(l.width*11/40).toFixed(2)+'px';
+  var dx=l.left+l.width/2-(m.left+m.width/2),dy=l.top+l.height/2-(m.top+m.height/2);
+  A($('.pi-word'),[{opacity:1},{opacity:0}],{duration:140,delay:T,easing:'ease-out',fill:'forwards',composite:'replace'});
+  A(mark,[{transform:'none'},{transform:'translate('+dx+'px,'+dy+'px) scale('+(l.width/m.width)+')'}],{duration:480,delay:T,easing:MOVE});
+  var last=A(o,[{clipPath:'inset(0px 0px 0px 0px round 0px)'},{clipPath:'inset('+l.top+'px '+(W-l.right)+'px '+(H-l.bottom)+'px '+l.left+'px round '+r+')'}],{duration:480,delay:T,easing:MOVE});
+  /* the page settles in behind it: headline first, then shrinking gaps */
+  [['.hero .eyebrow',0],['.hero h1',50],['.hstage',120],['.hero .lead',170],['.hero .ctas',230],['.hero .where',270]].forEach(function(x){
+    A(document.querySelector(x[0]),[{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'none'}],{duration:620,delay:T+170+x[1],easing:OUT,fill:'backwards'},page);
+  });
+  last.onfinish=end;
+  setTimeout(function(){if(!ended)end()},3000);
+})();
+</script>
 
 <div class="trades" aria-label="Made for local service businesses"><div class="trk">
   <span>Garage doors</span><span>Tree service</span><span>Gutters</span><span>Roofing</span><span>Christmas lighting</span><span>HVAC</span><span>Lawn care</span><span>Painting</span><span>Windows</span><span>Junk removal</span>
