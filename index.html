@@ -588,9 +588,9 @@ html.intro .pi{display:flex;flex-direction:column;align-items:center;justify-con
   A($('.pi-word'),[{opacity:1},{opacity:0}],{duration:140,delay:T,easing:'ease-out',fill:'forwards',composite:'replace'});
   A(mark,[{transform:'none'},{transform:'translate('+dx+'px,'+dy+'px) scale('+(l.width/m.width)+')'}],{duration:480,delay:T,easing:MOVE});
   var last=A(o,[{clipPath:'inset(0px 0px 0px 0px round 0px)'},{clipPath:'inset('+l.top+'px '+(W-l.right)+'px '+(H-l.bottom)+'px '+l.left+'px round '+r+')'}],{duration:480,delay:T,easing:MOVE});
-  /* the page settles in behind it: headline first, then shrinking gaps */
+  /* the page settles in behind it. Movement only: the headline stays painted so Google counts it as loaded right away */
   [['.hero .eyebrow',0],['.hero h1',50],['.hstage',120],['.hero .lead',170],['.hero .ctas',230],['.hero .where',270]].forEach(function(x){
-    A(document.querySelector(x[0]),[{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'none'}],{duration:620,delay:T+170+x[1],easing:OUT,fill:'backwards'},page);
+    A(document.querySelector(x[0]),[{transform:'translateY(18px)'},{transform:'none'}],{duration:620,delay:T+170+x[1],easing:OUT,fill:'backwards'},page);
   });
   last.onfinish=end;
   setTimeout(function(){if(!ended)end()},3000);
